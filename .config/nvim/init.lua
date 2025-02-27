@@ -10,6 +10,7 @@ vim.opt.completeopt = menu, menuone, noselect
 vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
 vim.opt.encoding = "utf-8"
+vim.opt.switchbuf = "usetab"
 
 -- set light background if set in ~/shell_bg
 local bg_file = io.open(os.getenv("HOME") .. "/.config/colorschemes/shell_bg", "r")
@@ -317,9 +318,9 @@ local plugins = {
 	-- dap
 	{
 		-- use multiline fork for python
-		-- "mfussenegger/nvim-dap",
-		"LiadOz/nvim-dap",
-		branch = "LiadOz/multiline-inputs",
+		"mfussenegger/nvim-dap",
+		-- "LiadOz/nvim-dap",
+		-- branch = "LiadOz/multiline-inputs",
 		config = function()
 			local dap = require("dap")
 			dap.defaults.fallback.terminal_win_cmd = "tabnew"
@@ -335,6 +336,9 @@ local plugins = {
 			end)
 			vim.keymap.set("n", "<F6>", function()
 				dap.terminate()
+			end)
+			vim.keymap.set("n", "<F7>", function()
+				dap.restart()
 			end)
 			vim.keymap.set("n", "<F10>", function()
 				dap.step_over()
@@ -464,7 +468,7 @@ local plugins = {
 					end)
 					map("n", "<leader>hS", gitsigns.stage_buffer)
 					map("n", "<leader>hu", gitsigns.undo_stage_hunk)
-					-- map("n", "<leader>hR", gitsigns.reset_buffer)
+					map("n", "<leader>hR", gitsigns.reset_buffer)
 					map("n", "<leader>hp", gitsigns.preview_hunk)
 					map("n", "<leader>hb", function()
 						gitsigns.blame_line({ full = true })
