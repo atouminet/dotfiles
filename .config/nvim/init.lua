@@ -437,17 +437,17 @@ local plugins = {
 					end
 
 					-- Navigation
-					map("n", "]c", function()
+					map("n", "]h", function()
 						if vim.wo.diff then
-							vim.cmd.normal({ "]c", bang = true })
+							vim.cmd.normal({ "]h", bang = true })
 						else
 							gitsigns.nav_hunk("next")
 						end
 					end)
 
-					map("n", "[c", function()
+					map("n", "[h", function()
 						if vim.wo.diff then
-							vim.cmd.normal({ "[c", bang = true })
+							vim.cmd.normal({ "[h", bang = true })
 						else
 							gitsigns.nav_hunk("prev")
 						end
@@ -464,7 +464,7 @@ local plugins = {
 					end)
 					map("n", "<leader>hS", gitsigns.stage_buffer)
 					map("n", "<leader>hu", gitsigns.undo_stage_hunk)
-					map("n", "<leader>hR", gitsigns.reset_buffer)
+					-- map("n", "<leader>hR", gitsigns.reset_buffer)
 					map("n", "<leader>hp", gitsigns.preview_hunk)
 					map("n", "<leader>hb", function()
 						gitsigns.blame_line({ full = true })
@@ -592,15 +592,15 @@ local plugins = {
 			-- vim.g.vimtex_view_general_options = "--unique file:@pdf#src:@line@tex"
 			vim.g.vimtex_view_method = "zathura"
 			-- vim.g.vimtex_compiler_method = "latexrun"
-			-- vim.g.vimtex_compiler_latexmk = {
-			-- 	options = {
-			-- 		"--shell-escape",
-			-- 		"--verbose",
-			-- 		"--file-line-error",
-			-- 		"--synctex=1",
-			-- 		"--interaction=nonstopmode",
-			-- 	},
-			-- }
+			vim.g.vimtex_compiler_latexmk = {
+				options = {
+					"--shell-escape",
+					"--verbose",
+					"--file-line-error",
+					"--synctex=1",
+					"--interaction=nonstopmode",
+				},
+			}
 		end,
 	},
 	{
