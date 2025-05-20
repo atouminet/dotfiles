@@ -195,26 +195,26 @@ local plugins = {
 			--
 			-- autoload installed LSPs
 			mason_lspconfig.setup()
-			mason_lspconfig.setup_handlers({
-				function(server_name)
-					require("lspconfig")[server_name].setup({})
-				end,
-			})
+			-- mason_lspconfig.setup_handlers({
+			-- 	function(server_name)
+			-- 		require("lspconfig")[server_name].setup({})
+			-- 	end,
+			-- })
 		end,
 	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.formatting.stylua,
-					-- null_ls.builtins.formatting.black,
-					-- null_ls.builtins.diagnostics.cpplint,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	config = function()
+	-- 		local null_ls = require("null-ls")
+	-- 		null_ls.setup({
+	-- 			sources = {
+	-- 				null_ls.builtins.formatting.stylua,
+	-- 				-- null_ls.builtins.formatting.black,
+	-- 				-- null_ls.builtins.diagnostics.cpplint,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	-- autocompletion
 	{
 		"hrsh7th/nvim-cmp",
@@ -640,6 +640,24 @@ local plugins = {
 			})
 		end,
 	},
+    {
+      "f-person/auto-dark-mode.nvim",
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+            
+        set_dark_mode = function()
+            vim.cmd([[colorscheme github_dark]])
+        end,
+        set_light_mode = function()
+            vim.cmd([[colorscheme github_light]])
+        end,
+        update_interval = 2000,
+        fallback = "dark"
+           
+      }
+}
 }
 require("lazy").setup(plugins)
 
